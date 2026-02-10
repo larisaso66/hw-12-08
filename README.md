@@ -46,9 +46,9 @@ Active-Active — все ноды работают, при падении одн
 
 `2.1. Примеры команд резервирования данных и восстановления БД (pgdump/pgrestore)`
 
-```
 *Резервное копирование*
 
+```
 pg_dump -U username -h localhost -d database_name -F c -b -v -f /backup/backup_file.dump
 
 pg_dump -U username -d database_name | gzip > /backup/backup_file.sql.gz
@@ -58,13 +58,23 @@ pg_dump -U username -d database_name -s -f /backup/schema_only.sql
 pg_dump -U username -d database_name -t table_name -f /backup/table_backup.sql
 
 ```
+*Восстановление*
 
+```
+pg_restore -U username -h localhost -d new_database -v /backup/backup_file.dump
 
-`При необходимости прикрепитe сюда скриншоты
-![Название скриншота 2](ссылка на скриншот 2)`
+pg_restore -U username -d database_name -s -v /backup/backup_file.dump
 
+pg_restore -U username -d database_name -t table_name -v /backup/backup_file.dump
 
----
+psql -U username -d database_name -f /backup/backup_file.sql
+
+```
+`2.1*. Автоматизировать резервирования данных и восстановления БД можно следующими способами`
+
+1. Выполнение вышеуказанных команд через скрипт автоматического бекапа (bash) и настройку cron
+2. Использование специализированных инструментов, таких как: Barman (Backup and Recovery Manager), pgBackRest
+3. ИИспользование WAL (Write-Ahead Log) архивирования
 
 ### Задание 3
 
