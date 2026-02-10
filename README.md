@@ -46,15 +46,11 @@ Active-Active — все ноды работают, при падении одн
 
 `2.1. Примеры команд резервирования данных и восстановления БД (pgdump/pgrestore)`
 
-```pg_dump -U username -h localhost -d database_name -F c -b -v -f /backup/backup_file.dump```
+```
+pg_dump -U username -h localhost -d database_name -F c -b -v -f /backup/backup_file.dump
 
 ```
-Поле для вставки кода...
-....
-....
-....
-....
-```
+
 
 `При необходимости прикрепитe сюда скриншоты
 ![Название скриншота 2](ссылка на скриншот 2)`
