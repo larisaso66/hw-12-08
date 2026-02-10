@@ -48,6 +48,9 @@ Active-Active — все ноды работают, при падении одн
 
 ```
 pg_dump -U username -h localhost -d database_name -F c -b -v -f /backup/backup_file.dump
+pg_dump -U username -d database_name | gzip > /backup/backup_file.sql.gz
+pg_dump -U username -d database_name -s -f /backup/schema_only.sql
+pg_dump -U username -d database_name -t table_name -f /backup/table_backup.sql
 
 ```
 
