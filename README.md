@@ -92,10 +92,13 @@ max_binlog_size = 100M
 ```
 *Создание бекапа*
 ```
-mysqldump -u root -p --all-databases --flush-logs --master-data=2 \
-  --single-transaction --routines --triggers --events \
-  > /backup/full_backup_$(date +%Y%m%d).sql
+mysqldump -u root -p --all-databases --flush-logs --master-data=2 --single-transaction --routines --triggers --events /backup/full_backup_$(date +%Y%m%d).sql
 ```
 *Создание инкрементного бекапа (копирование бинарных логов)*
-
-
+```
+mysqlbinlog /var/log/mysql/mysql-bin.00000x mysql-bin.00000y > /backup/incremental_backup_$(date +%Y%m%d_%H%M%S).sql
+```
+*Использование mysqlbackup*
+```
+mysqlbackup --user=root --password --backup-dir=/backup/inc/ --incremental --incremental-base=dir:/backup/full backup
+```
