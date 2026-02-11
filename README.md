@@ -44,7 +44,7 @@ Active-Active — все ноды работают, при падении одн
 
 ### Задание 2
 
-2.1. Примеры команд резервирования данных и восстановления БД (pgdump/pgrestore)
+**2.1. Примеры команд резервирования данных и восстановления БД (pgdump/pgrestore)**
 
 *Резервное копирование*
 
@@ -70,7 +70,7 @@ pg_restore -U username -d database_name -t table_name -v /backup/backup_file.dum
 psql -U username -d database_name -f /backup/backup_file.sql
 
 ```
-2.1*. Автоматизировать резервирования данных и восстановления БД можно следующими способами:
+***2.1. Автоматизировать резервирования данных и восстановления БД можно следующими способами:**
 
 1. Выполнение вышеуказанных команд через скрипт автоматического бекапа (bash) и настройку cron
 2. Использование специализированных инструментов, таких как: Barman (Backup and Recovery Manager), pgBackRest
@@ -78,7 +78,7 @@ psql -U username -d database_name -f /backup/backup_file.sql
 
 ### Задание 3
 
-Примеры команд инкрементного резервного копирования базы данных MySQL
+**3.1. Примеры команд инкрементного резервного копирования базы данных MySQL**
 
 *Предварительные требования*
 ```
@@ -97,9 +97,11 @@ mysqldump -u root -p --all-databases --flush-logs --master-data=2 \
 ```
 *Создание инкрементного бекапа (копирование бинарных логов)*
 ```
-mysqlbinlog /var/log/mysql/mysql-bin.00000x mysql-bin.00000y > /backup/incremental_backup_$(date +%Y%m%d_%H%M%S).sql
+mysqlbinlog /var/log/mysql/mysql-bin.00000x mysql-bin.00000y \
+  > /backup/incremental_backup_$(date +%Y%m%d_%H%M%S).sql
 ```
 *Использование mysqlbackup*
 ```
-mysqlbackup --user=root --password --backup-dir=/backup/inc/ --incremental --incremental-base=dir:/backup/full backup
+mysqlbackup --user=root --password --backup-dir=/backup/inc/ \
+  --incremental --incremental-base=dir:/backup/full backup
 ```
