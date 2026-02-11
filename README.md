@@ -70,7 +70,7 @@ pg_restore -U username -d database_name -t table_name -v /backup/backup_file.dum
 psql -U username -d database_name -f /backup/backup_file.sql
 
 ```
-`2.1*. Автоматизировать резервирования данных и восстановления БД можно следующими способами`
+`2.1*. Автоматизировать резервирования данных и восстановления БД можно следующими способами:`
 
 1. Выполнение вышеуказанных команд через скрипт автоматического бекапа (bash) и настройку cron
 2. Использование специализированных инструментов, таких как: Barman (Backup and Recovery Manager), pgBackRest
